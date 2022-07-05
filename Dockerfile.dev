@@ -1,0 +1,21 @@
+######################################################################################
+# run wsl 
+# cd ~
+# explorer.exe .
+# move your project here and go to project, then run code .
+# cd /mnt/c/users/jolwa/ReactProjects/frontend
+# /app/node_modules.cache
+# docker build -f Dockerfile.dev -t ollie/frontend:dev .
+# docker run -d -p 3000:3000 -v /app/node_modules -v C:\Users\jolwa\ReactProjects\frontend:/app ollie/frontend:dev
+# docker run -it  ollie/frontend:dev npm run test
+######################################################################################
+FROM node:16-alpine
+
+WORKDIR '/app'
+
+COPY package.json .
+RUN npm install
+
+COPY . .
+
+CMD ["npm", "run", "start"]
